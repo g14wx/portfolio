@@ -6,6 +6,9 @@ module.exports = {
       colors: {
         primary: defaultTheme.colors.green
       },
+      screens: {
+        "xs": "100px"
+      }
       
     },
     fontSize: {

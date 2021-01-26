@@ -1,5 +1,5 @@
 <template>
-    <Nuxt />
+    <Nuxt/>
 </template>
 
 <script lang="ts">
@@ -9,10 +9,22 @@ export default Vue.extend({
         return {
             bodyAttrs: {
                 class: "font-sans antialiased text-gray-900 leading-normal tracking-wider bg-cover",
-                style: "background-image:url('https://source.unsplash.com/1L71sPT5XKc');"
+               // style: "background-image:url('https://source.unsplash.com/1L71sPT5XKc');"
             },
         }
     },
+    data:{
+      config:new Map<any,any>([])
+    },
+    mounted(){
+
+    },
+
+    methods:{
+   
+
+
+    }
 })
 </script>
 
