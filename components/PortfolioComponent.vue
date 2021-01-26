@@ -11,7 +11,7 @@
 
 		<div class="p-4 md:p-12 text-center lg:text-left ">
 			<!-- Image for mobile view-->
-			<div class="block lg:hidden rounded-full shadow-xl mx-auto -mt-16 h-48 w-48 bg-cover bg-center" style="background-image: url('https://source.unsplash.com/MP0IUfwrn0A')"></div>
+			<div class="block imgCardPort lg:hidden rounded-full shadow-xl mx-auto -mt-16 h-48 w-48 bg-cover bg-center" style="background-image: url('logo.png')"></div>
 			
     <h1 class=" pt-8 lg:pt-0 ml2 font-main sm:text-4xl md:text-5xl flex flex-wrap gap-0 content-center" >carlos&hernandez</h1>
 			<div class="mx-auto lg:mx-0 w-4/5 pt-3 border-b-2 border-green-500 opacity-25"></div>
@@ -20,11 +20,14 @@
 
 
 			<div class="pt-12 pb-8">
-        <button class="h-8 px-4 text-sm text-indigo-100 transition-colors duration-150 bg-indigo-700 rounded-lg cursor-pointer focus:shadow-outline hover:bg-indigo-800">
-            <span>Pure Vue projects</span>
+        <button class="h-8 px-4 text-sm text-indigo-100 transition-colors duration-150 bg-indigo-700 rounded-lg cursor-pointer focus:shadow-outline hover:bg-indigo-800" @click="showThisProjects(0)">
+            <span>Pure Vue Projects</span>
         </button>
-                <button class="h-8 px-4 text-sm text-indigo-100 transition-colors duration-150 bg-indigo-700 rounded-lg cursor-pointer focus:shadow-outline hover:bg-indigo-800">
-            <span>laravel projects</span>
+        <button class="h-8 px-4 text-sm text-indigo-100 transition-colors duration-150 bg-indigo-700 rounded-lg cursor-pointer focus:shadow-outline hover:bg-indigo-800" @click="showThisProjects(1)">
+            <span>Laravel and Vue projects</span>
+        </button>
+        <button class="h-8 px-4 m-2 text-sm text-indigo-100 transition-colors duration-150 bg-indigo-700 rounded-lg cursor-pointer focus:shadow-outline hover:bg-indigo-800" @click="showThisProjects(2)">
+            <span>Spring and Vue projects</span>
         </button>
 			</div>
 
@@ -53,16 +56,22 @@
     </div>
     </div>-->
    
-<div class="mx-10 border border-black w-full relative" style="margin-top:60px">
-    <img src="vue.png" class="absolute" style="height:150px; top:-100px; left:0px;" alt="" srcset="">
-<ul class="m-10">
-  <li class="border list-none rounded-sm px-3 py-3" style='border-bottom-width:0'>List Item 1</li>
-  <li class="border list-none rounded-sm px-3 py-3" style='border-bottom-width:0'>List Item 2</li>
-  <li class="border list-none rounded-sm px-3 py-3" style='border-bottom-width:0'>List Item 2</li>
-  <li class="border list-none rounded-sm px-3 py-3" style='border-bottom-width:0'>List Item 2</li>
-  <li class="border list-none rounded-sm px-3 py-3" style='border-bottom-width:0'>List Item 2</li>
-  <li class="border list-none rounded-sm px-3 py-3" style='border-bottom-width:0'>List Item 2</li>
+<div v-if="loadedCard" v-for="(project,index) in selectedProject" :key="index" class="mx-10 shadow shadow-lg w-full relative bg-white rounded rounded-xl" style="margin-top:60px">
+    <img :src="project.img" class="absolute imageCardProject" style="height:150px; top:-100px; left:0px;" alt="" srcset="">
+
+  <span class="absolute font-hand" :class="{'text-5xl':project.mainTitle=='Vue','text-2xl':project.mainTitle !='Vue'}" style="top:-40px; right:0px;">{{project.mainTitle}}</span>
+<ul class="m-10 pt-5" v-if="project.projects"> 
+  <li  v-for="project in project.projects" :key="project" class=" rounded-sm px-3 py-3" style='border-bottom-width:0'>
+    <a :href="project.url" target="_blank" class="no-underline text-purple-700">{{project.title}} (go to website)</a></li>
 </ul>
+<div v-else>
+ <div class="my-10 mx-8 pt-5 text-justify">
+   Hi, my name is Carlos Hernandez, I'm a developer and I enjoy learn and practice new thecnologies, I keep improving every day, what I learn, I keep practicing it.
+ </div>
+
+</div>
+
+ <div class="absolute bg-black rounded rounded-xl p-4 text-white hintCard" style="left:-10px; bottom:-80px; width:110%;" >{{project.hint}}</div>
 </div>
 
 	</div>
@@ -86,11 +95,84 @@ export default Vue.extend({
     return {
       wordToChange : "",
       indexTitle: 0,
-      loaded:false
+      animateCardProjects: null,
+      loaded:false,
+      loadedCard:true,
+      animateHint:null,
+      projects:[
+        {
+          "img":"vue.png",
+          "mainTitle":"Vue",
+          "projects":[
+            {
+            "title": "Tutorial Install xampp y IIS",
+            "url":"https://mystifying-brattain-bafa57.netlify.app/"
+          },
+          {
+            "title": "Time Line - Bible",
+            "url":"https://brave-heyrovsky-3646c8.netlify.app/"
+          }
+          ],
+            "hint":"My favorite stack to work with vue is Nuxt, its an easy solution for WPA and SPA"
+        },
+        {
+          "img":"laravel.png",
+          "mainTitle":"Laravel/Vue",
+          "projects":[
+          {
+            "title": "Corporate law system",
+            "url":"https://cplegal.herokuapp.com"
+          },
+          {
+            "title": "ContaPainless T, contable System ",
+            "url":"https://tranquil-citadel-03171.herokuapp.com/"
+          },
+          {
+            "title": "Restaurant system ",
+            "url":"http://pruebagenerica01.byethost24.com/restaurante/"
+          }
+          ],
+          "hint": "Actually i work with laravel, lumen, Jetstream and Inertia with Vue"
+        },
+        {
+          "img":"spring.png",
+          "mainTitle":"Spring/Vue",
+          "projects":[
+          {
+            "title": "Corporate law system",
+            "url":"https://cplegal.herokuapp.com"
+          },
+          {
+            "title": "ContaPainless T, contable System ",
+            "url":"https://tranquil-citadel-03171.herokuapp.com/"
+          },
+          {
+            "title": "Restaurant system ",
+            "url":"http://pruebagenerica01.byethost24.com/restaurante/"
+          }
+          ],
+          "hint": "Actually i work with laravel, lumen, Jetstream and Inertia with Vue"
+        }
+      ],
+      selectedProject:[
+        {
+          "img":"logo.png",
+          "mainTitle":"Fearless",
+          "hint":"You can click in the buttons in the left card, that will show you up, my projects"
+      }
+      ]
     }
   },
 
   methods:{
+
+    showThisProjects(project:Number){
+      this.loadedCard = false;
+        this.selectedProject[0] = this.projects[project];
+        this.loadedCard = true;
+        this.animateCardProjects.play();
+        this.animateHint.play();
+    },
 
     parseLetters(textContent:string):string{
 
@@ -128,6 +210,41 @@ export default Vue.extend({
   },
 mounted(){
 
+/**
+ * MAKE ANIME FOR THE PROJECTS
+ */
+
+    anime({
+          targets:".imgCardPort",
+            autoplay:true,
+            scale:[0,1],
+            translateY:[-100,0]
+        })
+
+        this.animateHint = anime.timeline({
+
+          targets:".hintCard",
+            autoplay:false,
+        })
+        .add({
+            scale:[0,1],
+            translateX:[-100,0],
+            duration:2000
+        }).add(
+          {
+            rotate:[0,5]
+          }
+        )
+
+    this.animateCardProjects = anime({
+      targets:".imageCardProject",
+        autoplay:false,
+        scale:[0,1],
+        translateY:[-100,0]
+    });
+
+    this.animateCardProjects.play();
+    this.animateHint.play();
       var textWrapper2:any = document.querySelector('.ml2');
     textWrapper2.innerHTML = this.parseLetters(textWrapper2.textContent)
    
