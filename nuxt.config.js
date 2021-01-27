@@ -14,10 +14,10 @@ export default {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '' }
+      { hid: 'Ac-04\'s Portfolio', name: 'This is g14wx or Ac-04 portfolio', content: 'My portfolio, g14wx - ac-04 - negus' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      { rel: 'icon', type: 'image/x-icon', href: '/devs.ico' },
       {href:"https://fonts.googleapis.com/css2?family=Bungee+Shade&display=swap", rel:"stylesheet"},
       {href:"https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap", rel:"stylesheet"}
     ]

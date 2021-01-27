@@ -189,7 +189,7 @@ export default Vue.extend({
             "credentials":"tavo : tavo"
           }
           ],
-          "hint": "Nowadays I work with laravel, lumen, Jetstream and Inertia with Vue"
+          "hint": "Nowadays I use laravel, lumen, Jetstream and Inertia/Vue"
         },
         {
           "img":"spring.png",
