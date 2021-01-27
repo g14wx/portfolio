@@ -133,6 +133,18 @@
 <script lang="ts">
 import Vue from 'vue'
 import anime from "animejs"
+
+declare interface IProject {
+  url?: string,
+  credentials?: string
+  title?: string
+}
+
+interface TextWrapper extends HTMLInputElement{
+  textContent:string
+  innerHTML: string
+}
+
 export default Vue.extend({
 
 
@@ -141,16 +153,16 @@ export default Vue.extend({
       modal:false,
       wordToChange : "",
       indexTitle: 0,
-      animateCardProjects: null,
-      animateModal:null,
+      animateCardProjects: anime({}),
+      animateModal:anime({}),
       loaded:false,
       loadedCard:true,
-      animateHint:null,
+      animateHint:anime({}),
       islg:false,
       imgModalIcon:"",
       titleModal:"",
       contentModal:"",
-      projectsModal:[],
+      projectsModal:[] as IProject[],
       projects:[
         {
           "img":"vue.png",
@@ -239,7 +251,7 @@ export default Vue.extend({
       this.islg = false
     }
   },
-    showThisProjects(project:Number){
+    showThisProjects(project:any){
       this.onResize();
       if(!this.islg){
         this.modal = true;
@@ -380,8 +392,8 @@ anime(
       
    })
 // Wrap every letter in a span
-var textWrapper = document.querySelector('.ml16');
-textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letterml16'>$&</span>");
+var textWrapper : any = document.querySelector('.ml16');
+textWrapper.innerHTML = textWrapper?.textContent.replace(/\S/g, "<span class='letterml16'>$&</span>")
 
    anime.timeline({loop:false}).add({
     targets: '.ml16 .letterml16',

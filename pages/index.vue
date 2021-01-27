@@ -11,6 +11,13 @@
 import Vue from 'vue';
 import PortfolioComponent from '~/components/PortfolioComponent.vue';
 import anime from "animejs";
+
+
+interface MyWindow extends Window {
+  onNuxtReady(obj: object): void
+}
+declare var window: MyWindow;
+
 export default Vue.extend({
   components: { PortfolioComponent },
 
@@ -35,7 +42,7 @@ export default Vue.extend({
 mounted(){
 
 if (process.browser) {
-  window.onNuxtReady((app) => {
+  window?.onNuxtReady((app:any) => {
     setTimeout(() => {
       this.animateCircle()
     }, 2000);
